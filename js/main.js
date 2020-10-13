@@ -2,43 +2,50 @@
 var title = document.querySelector(".title");
 title.textContent = "Aparecida Nutricionista";
 
-var paciente01 = document.querySelector("#paciente01");
+var pacientes = document.querySelectorAll(".paciente");
+//não é uma boaprática de programação repetir mil vezes o código
 // var paciente02 = document.querySelector("#paciente02");
 // var paciente03 = document.querySelector("#paciente03");
-var tdPeso = paciente01.querySelector(".info-peso"); //tenho certeza que há como melhorar essa parte
-var pesoPaciente = tdPeso.textContent;
 
-var tdAltura = paciente01.querySelector(".info-altura");
-var alturaPaciente = tdAltura.textContent;
-
-var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
-var tdImc = paciente01.querySelector(".info-imc");
-
-
-//variaveis para a validacao do peso
-var pesoValidacao = true;
-var alturaValidacao = true;
-
-//verificação imc (de uma forma beeeem estranha ainda)
-if(pesoPaciente < 0 || pesoPaciente >= 1000){
-  console.log("Peso Inválido!");
-  pesoValidacao = false;
-
-  tdImc.textContent == "Peso inválido!"; //parte da validação de imc
-}
-
-if(alturaPaciente <= 0 || alturaPaciente >= 3.00){
-  console.log("Altura inválida!");
-  pesoValidacao = false;
-
-  tdImc.textContent = "Altura inválida!" //parte da validação de imc
-}
-
-//aqui o isntrutor usa as variaveis de validacao calcular o imc com valores validos
-if(alturaValidacao && pesoValidacao) {
-  var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
-  tdImc.textContent = imc;
+//agora o instrutor vai usar for o que já da um alivio mental
+for(var i = 0; i < pacientes.length; i++){
+  console.log(i);
+  var tdPeso = pacientes[i].querySelector(".info-peso"); //tenho certeza que há como melhorar essa parte
   
+  var pesoPaciente = tdPeso.textContent;
+  var tdAltura = pacientes[i].querySelector(".info-altura");
+  var alturaPaciente = tdAltura.textContent;
+
+  var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
+  var tdImc = pacientes[i].querySelector(".info-imc");
+
+  //variaveis para a validacao do peso
+  var pesoValidacao = true;
+  var alturaValidacao = true;
+
+  //verificação imc (de uma forma beeeem estranha ainda)
+  if(pesoPaciente < 0 || pesoPaciente >= 1000){
+    console.log("Peso Inválido!");
+    pesoValidacao = false;
+
+    tdImc.textContent = "Peso inválido!"; //parte da validação de imc
+  }
+
+  if(alturaPaciente <= 0 || alturaPaciente >= 3.00){
+    console.log("Altura inválida!");
+    pesoValidacao = false;
+
+    tdImc.textContent = "Altura inválida!" //parte da validação de imc
+  }
+
+  //aqui o isntrutor usa as variaveis de validacao calcular o imc com valores validos
+  if(alturaValidacao && pesoValidacao){
+    var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
+    tdImc.textContent = imc.toFixed(2); //trunca em duas casas decimais o imc
+    
+  }
+
 }
 
-console.log(imc);
+
+console.log(pacientes);
