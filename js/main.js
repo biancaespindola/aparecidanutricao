@@ -10,14 +10,16 @@ var pacientes = document.querySelectorAll(".paciente");
 //agora o instrutor vai usar for o que já da um alivio mental
 for(var i = 0; i < pacientes.length; i++){
   console.log(i);
-  var tdPeso = pacientes[i].querySelector(".info-peso"); //tenho certeza que há como melhorar essa parte
+  var paciente = pacientes[i] //ele vai modificar mais atributos atraves dessa propriedade por isso faz isso
+
+  var tdPeso = paciente.querySelector(".info-peso"); //tenho certeza que há como melhorar essa parte
   
   var pesoPaciente = tdPeso.textContent;
-  var tdAltura = pacientes[i].querySelector(".info-altura");
+  var tdAltura = paciente.querySelector(".info-altura");
   var alturaPaciente = tdAltura.textContent;
 
   var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
-  var tdImc = pacientes[i].querySelector(".info-imc");
+  var tdImc = paciente.querySelector(".info-imc");
 
   //variaveis para a validacao do peso
   var pesoValidacao = true;
@@ -29,13 +31,17 @@ for(var i = 0; i < pacientes.length; i++){
     pesoValidacao = false;
 
     tdImc.textContent = "Peso inválido!"; //parte da validação de imc
+
+    paciente.classList.add("paciente-invalido");   //modifica o estilo da linha para deixar mais evidente 
   }
 
   if(alturaPaciente <= 0 || alturaPaciente >= 3.00){
     console.log("Altura inválida!");
     pesoValidacao = false;
 
-    tdImc.textContent = "Altura inválida!" //parte da validação de imc
+    tdImc.textContent = "Altura inválida!"; //parte da validação de imc
+
+    paciente.classList.add("paciente-invalido");  //modifica o estilo da linha para deixar mais evidente
   }
 
   //aqui o isntrutor usa as variaveis de validacao calcular o imc com valores validos
