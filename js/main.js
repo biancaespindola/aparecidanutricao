@@ -53,5 +53,11 @@ for(var i = 0; i < pacientes.length; i++){
 
 }
 
+title.addEventListener("click", function(){
+  console.log("Olá eu fui clicado!");
+});
 
-console.log(pacientes);
+var  botaoAdicionar = document.querySelector("#adicionar-paciente");
+botaoAdicionar.addEventListener("click",function(){
+  console.log("Oi, cliquei no botão");
+});
