@@ -13,12 +13,12 @@ for (var i = 0; i < pacientes.length; i++) {
   var paciente = pacientes[i]; //ele vai modificar mais atributos atraves dessa propriedade por isso faz isso
 
   var tdPeso = paciente.querySelector(".info-peso"); //tenho certeza que há como melhorar essa parte
-
   var pesoPaciente = tdPeso.textContent;
+
   var tdAltura = paciente.querySelector(".info-altura");
   var alturaPaciente = tdAltura.textContent;
 
-  var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
+  var imc = calculaIMC(pesoPaciente, alturaPaciente);
   var tdImc = paciente.querySelector(".info-imc");
 
   //variaveis para a validacao do peso
@@ -46,12 +46,20 @@ for (var i = 0; i < pacientes.length; i++) {
 
   //aqui o isntrutor usa as variaveis de validacao calcular o imc com valores validos
   if (alturaValidacao && pesoValidacao) {
-    var imc = pesoPaciente / (alturaPaciente * alturaPaciente);
-    tdImc.textContent = imc.toFixed(2); //trunca em duas casas decimais o imc
+    var imc = calculaIMC(pesoPaciente, alturaPaciente);
+    tdImc.textContent = imc; //trunca em duas casas decimais o imc
   }
 }
 
 // title.addEventListener("click", function () {
 //   console.log("Olá eu fui clicado!");
 // });
+
+function calculaIMC(peso, altura) {
+  var imc = 0;
+
+  imc = peso / (altura * altura);
+
+  return imc.toFixed(2);
+}
 
