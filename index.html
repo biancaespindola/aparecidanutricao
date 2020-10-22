@@ -37,7 +37,7 @@
 
             <tr class="paciente" id="paciente">
               <td class="info-nome">João</td>
-              <td class="info-peso">80</td>
+              <td class="info-peso">-80</td>
               <td class="info-altura">1.72</td>
               <td class="info-gordura">40</td>
               <td class="info-imc">0</td>
@@ -46,7 +46,7 @@
             <tr class="paciente" id="paciente">
               <td class="info-nome">Erica</td>
               <td class="info-peso">54</td>
-              <td class="info-altura">1.64</td>
+              <td class="info-altura">-1.64</td>
               <td class="info-gordura">14</td>
               <td class="info-imc">0</td>
             </tr>
@@ -73,6 +73,7 @@
     <!-- ... -->
     <section class="container">
       <h2 id="titulo-form">Adicionar novo paciente</h2>
+      <ul id="mensagem-erro"></ul>
       <form id="form-add">
         <div class="grupo">
           <label for="nome">Nome:</label>

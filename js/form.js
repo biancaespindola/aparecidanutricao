@@ -6,23 +6,40 @@ botaoAdicionar.addEventListener("click", function (event) {
   var form = document.querySelector("#form-add");
 
   var novoPaciente = obtemPacienteDoFormulario(form);
-  // Extraindo informações do paciente do form
 
   console.log(novoPaciente);
-  // console.log(pesoNovoPaciente);
-  // console.log(alturaNovoPaciente);
-  // console.log(gorduraNovoPaciente);
+  
 
-  //cria a tr e td do paciente
-  var novoPacienteTr = montaTr(novoPaciente);
+  var erroNovoPaciente = validaPaciente(validaPeso(novoPaciente.pesoNovoPaciente),
+  validaAltura(novoPaciente.alturaNovoPaciente));
 
-  // console.log(novoPacienteTr);
-  //adiconando o paciente na tabela
-  var tabelaPacientes = document.querySelector("#tabela-pacientes");
+  console.log(erroNovoPaciente.length);
 
-  tabelaPacientes.appendChild(novoPacienteTr);
+  // var mensagemErro = document.querySelector("#mensagem-erro");
+  // var validaPeso = validaPeso(pesoPaciente)
+  
 
-  form.reset();
+  if (erroNovoPaciente.length > 0) {
+    // var mensagemErro = document.querySelector("#mensagem-erro");
+    // mensagemErro.textContent = erro;
+    alert("Há algo de errado com o paciente que você deseja cadrastrar");
+    exibirMensagem(erroNovoPaciente);
+    //cria a tr e td do paciente
+    // alert("Os dados do paciente não foram inseridos corretamente");
+    return;
+  } else { 
+    // exibirMensagem("");      
+    // mensagemErro.textContent = erro;
+    var novoPacienteTr = montaTr(novoPaciente);
+
+    // console.log(novoPacienteTr);
+    //adiconando o paciente na tabela
+    var tabelaPacientes = document.querySelector("#tabela-pacientes");
+
+    tabelaPacientes.appendChild(novoPacienteTr);
+
+    form.reset();
+  }
 });
 
 function obtemPacienteDoFormulario(form) {
@@ -66,4 +83,31 @@ function montaTd(dado, classe) {
   return td;
 }
 
-// function filhoTr ()
+function validaPaciente(peso, altura) {
+  var erros = [];
+ 
+  // if (!peso && !altura) {
+  //   erros
+  //   return "Peso e altura inválidos";
+  // }
+  if (!peso) {
+    erros.push("Peso inválido");
+  }    
+  if (!altura) {
+    erros.push("Altura inválida");
+  } else {
+    return "";
+  }
+  return erros;
+}
+
+
+function exibirMensagem(erroNovoPaciente) {
+  var ul = document.querySelector("#mensagem-erro");
+  erroNovoPaciente.forEach(function(erroNovoPaciente){
+    var li = document.createElement("li");
+    li.textContent = erroNovoPaciente;
+    ul.appendChild(li);
+  });  
+  
+}
