@@ -37,7 +37,10 @@ botaoAdicionar.addEventListener("click", function (event) {
 
     tabelaPacientes.appendChild(novoPacienteTr);
 
+
     form.reset();
+    var mensagemErro = document.querySelector("#mensagem-erro");
+    mensagemErro.innerHTML = "";
   }
 });
 
