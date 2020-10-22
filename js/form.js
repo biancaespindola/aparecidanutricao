@@ -8,7 +8,6 @@ botaoAdicionar.addEventListener("click", function (event) {
   var novoPaciente = obtemPacienteDoFormulario(form);
 
   console.log(novoPaciente);
-  
 
   var erroNovoPaciente = validaPaciente(novoPaciente);
 
@@ -16,7 +15,6 @@ botaoAdicionar.addEventListener("click", function (event) {
 
   // var mensagemErro = document.querySelector("#mensagem-erro");
   // var validaPeso = validaPeso(pesoPaciente)
-  
 
   if (erroNovoPaciente.length > 0) {
     // var mensagemErro = document.querySelector("#mensagem-erro");
@@ -26,8 +24,8 @@ botaoAdicionar.addEventListener("click", function (event) {
     //cria a tr e td do paciente
     // alert("Os dados do paciente não foram inseridos corretamente");
     return;
-  } else { 
-    // exibirMensagem("");      
+  } else {
+    // exibirMensagem("");
     // mensagemErro.textContent = erro;
     var novoPacienteTr = montaTr(novoPaciente);
 
@@ -36,7 +34,6 @@ botaoAdicionar.addEventListener("click", function (event) {
     var tabelaPacientes = document.querySelector("#tabela-pacientes");
 
     tabelaPacientes.appendChild(novoPacienteTr);
-
 
     form.reset();
     var mensagemErro = document.querySelector("#mensagem-erro");
@@ -87,7 +84,7 @@ function montaTd(dado, classe) {
 
 function validaPaciente(novoPaciente) {
   var erros = [];
- 
+
   if (novoPaciente.nomeNovoPaciente.length == 0) {
     erros.push("Insira o nome do paciente");
   }
@@ -102,22 +99,20 @@ function validaPaciente(novoPaciente) {
   }
   if (!validaPeso(novoPaciente.pesoNovoPaciente)) {
     erros.push("Peso inválido");
-  }    
+  }
   if (!validaAltura(novoPaciente.alturaNovoPaciente)) {
     erros.push("Altura inválida");
-  } 
+  }
   return erros;
 }
-
 
 function exibirMensagem(erroNovoPaciente) {
   var ul = document.querySelector("#mensagem-erro");
   ul.innerHTML = "";
 
-  erroNovoPaciente.forEach(function(erroNovoPaciente){
+  erroNovoPaciente.forEach(function (erroNovoPaciente) {
     var li = document.createElement("li");
     li.textContent = erroNovoPaciente;
     ul.appendChild(li);
-  });  
-  
+  });
 }
