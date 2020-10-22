@@ -10,8 +10,7 @@ botaoAdicionar.addEventListener("click", function (event) {
   console.log(novoPaciente);
   
 
-  var erroNovoPaciente = validaPaciente(validaPeso(novoPaciente.pesoNovoPaciente),
-  validaAltura(novoPaciente.alturaNovoPaciente));
+  var erroNovoPaciente = validaPaciente(novoPaciente);
 
   console.log(erroNovoPaciente.length);
 
@@ -83,27 +82,35 @@ function montaTd(dado, classe) {
   return td;
 }
 
-function validaPaciente(peso, altura) {
+function validaPaciente(novoPaciente) {
   var erros = [];
  
-  // if (!peso && !altura) {
-  //   erros
-  //   return "Peso e altura inválidos";
-  // }
-  if (!peso) {
+  if (novoPaciente.nomeNovoPaciente.length == 0) {
+    erros.push("Insira o nome do paciente");
+  }
+  if (novoPaciente.pesoNovoPaciente.length == 0) {
+    erros.push("Insira o peso do paciente");
+  }
+  if (novoPaciente.alturaNovoPaciente.length == 0) {
+    erros.push("Insira a altura do paciente");
+  }
+  if (novoPaciente.gorduraNovoPaciente.length == 0) {
+    erros.push("Insira a porcentagem de gordura do paciente");
+  }
+  if (!validaPeso(novoPaciente.pesoNovoPaciente)) {
     erros.push("Peso inválido");
   }    
-  if (!altura) {
+  if (!validaAltura(novoPaciente.alturaNovoPaciente)) {
     erros.push("Altura inválida");
-  } else {
-    return "";
-  }
+  } 
   return erros;
 }
 
 
 function exibirMensagem(erroNovoPaciente) {
   var ul = document.querySelector("#mensagem-erro");
+  ul.innerHTML = "";
+
   erroNovoPaciente.forEach(function(erroNovoPaciente){
     var li = document.createElement("li");
     li.textContent = erroNovoPaciente;
