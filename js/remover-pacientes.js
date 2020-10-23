@@ -1,10 +1,13 @@
-var pacientesTabela = document.querySelectorAll(".paciente");
+var tabela = document.querySelector("table");
 
-console.log(pacientesTabela);
+tabela.addEventListener("dblclick", function(event){
+  event.target.parentNode.classList.add("fadeOut");
 
-pacientesTabela.forEach(function(paciente){
-  paciente.addEventListener("dblclick", function(){
-    console.log("fui clicado duas vezes");
-    this.remove();
-  });
+  setTimeout(function(){
+    event.target.parentNode.remove();
+  }, 500);
+  
+  
+
+
 });
