@@ -35,17 +35,15 @@ botaoAdicionar.addEventListener("click", function (event) {
   }
 });
 
-function adicionaNaTabela(novoPaciente){
-
+function adicionaNaTabela(novoPaciente) {
   var novoPacienteTr = montaTr(novoPaciente);
 
-    // console.log(novoPacienteTr);
-    //adiconando o paciente na tabela
-    var tabelaPacientes = document.querySelector("#tabela-pacientes");
+  // console.log(novoPacienteTr);
+  //adiconando o paciente na tabela
+  var tabelaPacientes = document.querySelector("#tabela-pacientes");
 
-    tabelaPacientes.appendChild(novoPacienteTr);
-
-};
+  tabelaPacientes.appendChild(novoPacienteTr);
+}
 
 function obtemPacienteDoFormulario(form) {
   var novoPaciente = {
@@ -63,18 +61,10 @@ function montaTr(novoPaciente) {
   var novoPacienteTr = document.createElement("tr");
   novoPacienteTr.classList.add("paciente");
 
-  novoPacienteTr.appendChild(
-    montaTd(novoPaciente.nome, "info-nome")
-  );
-  novoPacienteTr.appendChild(
-    montaTd(novoPaciente.peso, "info-peso")
-  );
-  novoPacienteTr.appendChild(
-    montaTd(novoPaciente.altura, "info-altura")
-  );
-  novoPacienteTr.appendChild(
-    montaTd(novoPaciente.gordura, "info-gordura")
-  );
+  novoPacienteTr.appendChild(montaTd(novoPaciente.nome, "info-nome"));
+  novoPacienteTr.appendChild(montaTd(novoPaciente.peso, "info-peso"));
+  novoPacienteTr.appendChild(montaTd(novoPaciente.altura, "info-altura"));
+  novoPacienteTr.appendChild(montaTd(novoPaciente.gordura, "info-gordura"));
   novoPacienteTr.appendChild(montaTd(novoPaciente.imc, "info-imc"));
 
   return novoPacienteTr;
