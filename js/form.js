@@ -27,13 +27,7 @@ botaoAdicionar.addEventListener("click", function (event) {
   } else {
     // exibirMensagem("");
     // mensagemErro.textContent = erro;
-    var novoPacienteTr = montaTr(novoPaciente);
-
-    // console.log(novoPacienteTr);
-    //adiconando o paciente na tabela
-    var tabelaPacientes = document.querySelector("#tabela-pacientes");
-
-    tabelaPacientes.appendChild(novoPacienteTr);
+    adicionaNaTabela(novoPaciente);
 
     form.reset();
     var mensagemErro = document.querySelector("#mensagem-erro");
@@ -41,13 +35,25 @@ botaoAdicionar.addEventListener("click", function (event) {
   }
 });
 
+function adicionaNaTabela(novoPaciente){
+
+  var novoPacienteTr = montaTr(novoPaciente);
+
+    // console.log(novoPacienteTr);
+    //adiconando o paciente na tabela
+    var tabelaPacientes = document.querySelector("#tabela-pacientes");
+
+    tabelaPacientes.appendChild(novoPacienteTr);
+
+};
+
 function obtemPacienteDoFormulario(form) {
   var novoPaciente = {
-    nomeNovoPaciente: form.nome.value,
-    pesoNovoPaciente: form.peso.value,
-    alturaNovoPaciente: form.altura.value,
-    gorduraNovoPaciente: form.gordura.value,
-    imcNovoPaciente: calculaIMC(form.peso.value, form.altura.value),
+    nome: form.nome.value,
+    peso: form.peso.value,
+    altura: form.altura.value,
+    gordura: form.gordura.value,
+    imc: calculaIMC(form.peso.value, form.altura.value),
   };
 
   return novoPaciente;
@@ -58,18 +64,18 @@ function montaTr(novoPaciente) {
   novoPacienteTr.classList.add("paciente");
 
   novoPacienteTr.appendChild(
-    montaTd(novoPaciente.nomeNovoPaciente, "info-nome")
+    montaTd(novoPaciente.nome, "info-nome")
   );
   novoPacienteTr.appendChild(
-    montaTd(novoPaciente.pesoNovoPaciente, "info-peso")
+    montaTd(novoPaciente.peso, "info-peso")
   );
   novoPacienteTr.appendChild(
-    montaTd(novoPaciente.alturaNovoPaciente, "info-altura")
+    montaTd(novoPaciente.altura, "info-altura")
   );
   novoPacienteTr.appendChild(
-    montaTd(novoPaciente.gorduraNovoPaciente, "info-gordura")
+    montaTd(novoPaciente.gordura, "info-gordura")
   );
-  novoPacienteTr.appendChild(montaTd(novoPaciente.imcNovoPaciente, "info-imc"));
+  novoPacienteTr.appendChild(montaTd(novoPaciente.imc, "info-imc"));
 
   return novoPacienteTr;
 }
@@ -85,22 +91,22 @@ function montaTd(dado, classe) {
 function validaPaciente(novoPaciente) {
   var erros = [];
 
-  if (novoPaciente.nomeNovoPaciente.length == 0) {
+  if (novoPaciente.nome.length == 0) {
     erros.push("Insira o nome do paciente");
   }
-  if (novoPaciente.pesoNovoPaciente.length == 0) {
+  if (novoPaciente.peso.length == 0) {
     erros.push("Insira o peso do paciente");
   }
-  if (novoPaciente.alturaNovoPaciente.length == 0) {
+  if (novoPaciente.altura.length == 0) {
     erros.push("Insira a altura do paciente");
   }
-  if (novoPaciente.gorduraNovoPaciente.length == 0) {
+  if (novoPaciente.gordura.length == 0) {
     erros.push("Insira a porcentagem de gordura do paciente");
   }
-  if (!validaPeso(novoPaciente.pesoNovoPaciente)) {
+  if (!validaPeso(novoPaciente.peso)) {
     erros.push("Peso inválido");
   }
-  if (!validaAltura(novoPaciente.alturaNovoPaciente)) {
+  if (!validaAltura(novoPaciente.altura)) {
     erros.push("Altura inválida");
   }
   return erros;
